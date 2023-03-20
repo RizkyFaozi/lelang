@@ -1,0 +1,16 @@
+
+tb_lelang.id_barang,tb_lelang.tgl_mulai,
+tb_lelang.tgl_selesai,tb_lelang.status
+,tb_barang.nama_barang,tb_barang.harga_awal
+,tb_barang.deskripsi,tb_barang.image FROM tb_barang
+ INNER JOIN tb_lelang on tb_barang.id_barang = tb_lelang.id_barang;
+
+
+ SELECT history_lelang.*,tb_barang.*,tb_lelang.* FROM tb_barang JOIN tb_lelang ON tb_barang.id_barang = tb_lelang.id_barang JOIN history_lelang ON tb_lelang.id_lelang = history_lelang.id_lelang ORDER BY history_lelang.penawaran_harga DESC;
+
+
+
+//
+ini
+gunanya untuk select 3
+SELECT history_lelang.*,tb_barang.*,tb_lelang.*,tb_masyarakat.* FROM tb_barang JOIN tb_lelang ON tb_barang.id_barang = tb_lelang.id_barang JOIN history_lelang ON tb_lelang.id_lelang = history_lelang.id_lelang JOIN tb_masyarakat ON history_lelang.id_user = tb_masyarakat.id_user ORDER BY history_lelang.penawaran_harga DESC;
