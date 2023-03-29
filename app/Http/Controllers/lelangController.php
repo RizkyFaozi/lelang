@@ -16,6 +16,11 @@ class lelangController extends Controller
         return view('admin/statuss/Statusbarang')->with(compact('contacts'));
     }
 
+    public function laporan(){
+        $contacts = lelangmodel::with('barang')->get();
+        return view('admin/statuss/laporan')->with(compact('contacts'));
+    }
+
     public function display(){
         $contacts = lelangmodel::with('barang')->where('status','dibuka')->get();
         return view('user/index',['contacts' =>$contacts]);
@@ -78,8 +83,8 @@ class lelangController extends Controller
 
 public function hapuslelang($id_lelang)
 {
-
     DB::table('tb_lelang')->where('id_lelang',$id_lelang)->delete();
+   
 
 	return redirect('Statusbarang')->with('alertSuccess','Data Lelang berhasil Di Hapus');
 }

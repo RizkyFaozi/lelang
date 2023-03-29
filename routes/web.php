@@ -38,7 +38,7 @@ Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 
 // });
 
-Route::middleware(['auth:petugas,masyarakat','ceklevel:admin,petugas,masyarakat'])->group( function () {
+Route::middleware('auth:petugas')->group( function () {
     Route::get('/admin', [adminController::class, 'index'])->name('index');
 
     Route::get('/datauser', [adminController::class, 'datauser'])->name('datauser');
@@ -69,6 +69,7 @@ Route::middleware(['auth:petugas,masyarakat','ceklevel:admin,petugas,masyarakat'
     Route::get('hapuslelang/{id}',[lelangController::class, 'hapuslelang'])->name('hapuslelang');
 
     Route::get('/Statusbarang', [lelangController::class, 'indexlelang'])->name('indexlelang');
+    Route::get('/Laporan', [lelangController::class, 'laporan'])->name('laporan');
     Route::post('ubahlelang/pemanang/{user}', [lelangController::class, 'Uploadpemenang'])->name('Uploadpemenang');
     Route::post('uploadbarang/{user}', [barangController::class, 'Upload'])->name('Upload');
 
@@ -82,6 +83,11 @@ Route::middleware(['auth:petugas,masyarakat','ceklevel:admin,petugas,masyarakat'
         return view('user/barang')->with(compact('barang', 'contactsharga', 'harga_tertinggi'));
     });
 
+    
+
+});
+
+Route::middleware('auth:masyarakat')->group( function () {
     Route::get('/hasil', function (lelangmodel $barang) {
         $barang = lelangmodel::with('barang')->where('status','=','selesai')->where('id_user',Auth::guard('masyarakat')->user()->id_user)->get();
         $harga_tertinggi = historymodel::max('penawaran_harga');
@@ -92,5 +98,4 @@ Route::middleware(['auth:petugas,masyarakat','ceklevel:admin,petugas,masyarakat'
     Route::get('/', [lelangController::class, 'display'])->name('display');
     Route::post('/user/barangmasuk', [hargaController::class, 'tambahharga']);
     Route::get('/user/coba', [hargaController::class, 'indexharga']);
-
 });

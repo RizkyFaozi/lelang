@@ -14,3 +14,17 @@ tb_lelang.tgl_selesai,tb_lelang.status
 ini
 gunanya untuk select 3
 SELECT history_lelang.*,tb_barang.*,tb_lelang.*,tb_masyarakat.* FROM tb_barang JOIN tb_lelang ON tb_barang.id_barang = tb_lelang.id_barang JOIN history_lelang ON tb_lelang.id_lelang = history_lelang.id_lelang JOIN tb_masyarakat ON history_lelang.id_user = tb_masyarakat.id_user ORDER BY history_lelang.penawaran_harga DESC;
+
+//Commit and Rollback
+
+START TRANSACTION;
+
+INSERT INTO tb_masyarakat(nama_lengkap,username,password,telp)
+VALUES ('Riszz','rissski','fauszi',08578557564);
+INSERT INTO tb_masyarakat(nama_lengkap,username,password,telp)
+VALUES ('Rizz','riski','fauzi',085718557564);
+
+SELECT * FROM tb_masyarakat;
+DELETE FROM tb_masyarakat;
+SELECT * FROM tb_masyarakat;
+ROLLBACK;

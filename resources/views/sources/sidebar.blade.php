@@ -38,7 +38,12 @@
                         </nav>
                     </div> 
                     @endif
-                    <div class="sb-sidenav-menu-heading">Addons</div>
+                    <div class="sb-sidenav-menu-heading">Laporan</div>
+                    <a class="nav-link" href="Laporan">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Laporan
+                    </a>
+                    <div class="sb-sidenav-menu-heading">Exit</div>
                     <a class="nav-link" href="{{route('logout')}}">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         Logout

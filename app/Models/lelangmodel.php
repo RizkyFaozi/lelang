@@ -19,4 +19,10 @@ class lelangmodel extends Model
     {
         return $this->hasOne(barangmodel::class,'id_barang','id_barang');
     }
+
+    public function get_pemenang()
+    {
+       $menang = $this->historylelang->sortByDesc('penawaran_harga');
+       return $menang->frist();
+    }
 }
